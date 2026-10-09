@@ -1,0 +1,24 @@
+[project]
+name = "system-one-reranker"
+version = "1.0.0"
+description = "System One models and their base LLMs as zero-shot rerankers on TREC DL 2019/2020"
+requires-python = ">=3.12"
+dependencies = [
+    "ir_datasets>=0.5",
+    "ir_measures>=0.3",
+    "typesafe-sdk>=0.7",
+    "python-dotenv>=1.0",
+    "requests>=2.31",
+    "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+# local LLMs (Qwen3.5-4B-Base, Gemma 4 E4B-it) on a GPU
+hf = [
+    "torch>=2.6",
+    "transformers>=5.17",
+    "flash-linear-attention",   # fast Gated-DeltaNet kernels for Qwen3.5; very slow without
+]
+
+[tool.uv]
+package = false
